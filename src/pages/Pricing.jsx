@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import PricingComponent from '../components/PricingComponent';
 
 export default function Pricing({appToView}) {
     const [loading,setLoading] = useState({
@@ -15,7 +16,7 @@ export default function Pricing({appToView}) {
 
         </div>
     </div>
-        Pricing
+       <PricingComponent/>
         <Footer/>
         </div>
   )
