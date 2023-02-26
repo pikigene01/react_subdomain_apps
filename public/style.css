@@ -1424,7 +1424,7 @@ ul.tag li a:hover{background:#03A9F4;color:#fff;border-color:#03A9F4}
   padding: 8px;
   width: 100%;
 }
-button {
+button.app {
   background: #f5b120 none repeat scroll 0 0;
   border: medium none;
   color: #ffffff;

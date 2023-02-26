@@ -44,13 +44,21 @@ function App() {
       <Routes>
         <Route exact path="/" element={<WholeApp appToView={appToView} />}/>
         <Route exact path="/about" element={<About appToView={appToView}/>}/>
+        <Route exact path="/blog" element={<About appToView={appToView}/>}/>
+        <Route exact path="/blog/:id" element={<About appToView={appToView}/>}/>
         <Route exact path="/contact" element={<Contact appToView={appToView}/>}/>
         <Route exact path="/login" element={<Login appToView={appToView}/>}/>
         <Route exact path="/sign-up" element={<SignUp appToView={appToView}/>}/>
         <Route exact path="/dashboard" element={<Dashboard appToView={appToView}/>}/>
         {!appToView.itsApp && (
           <>
+        <Route exact path="/dashboard/subscriptions" element={<Dashboard appToView={appToView}/>}/>
+        <Route exact path="/dashboard/reports" element={<Dashboard appToView={appToView}/>}/>
+        <Route exact path="/dashboard/funds" element={<Dashboard appToView={appToView}/>}/>
+        <Route exact path="/dashboard/blogs/news" element={<Dashboard appToView={appToView}/>}/>
+
         <Route exact path="/pricing" element={<Pricing appToView={appToView}/>}/>
+        <Route exact path="/create-app/:plan" element={<SignUp appToView={appToView}/>}/>
         <Route exact path="/create-app" element={<SignUp appToView={appToView}/>}/>
           </>
         )}

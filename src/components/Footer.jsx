@@ -50,7 +50,7 @@ export default function Footer() {
 								<h5>Links</h5>
 								<ul className="footer-menu">
 									<li><Link to="/about">About</Link></li>
-									<li><Link to="/news">News</Link></li>
+									<li><Link to="/blog">News</Link></li>
 									<li><Link to="/pricing">Pricing</Link></li>
 									<li><Link to="/create-app">Create Risk Management App</Link></li>
 								</ul>
@@ -64,7 +64,7 @@ export default function Footer() {
 					<div className="row">
 						<div className="col-md-6">
 							<div className="copyright">
-								<p>&copy; RiskCurb 2023 </p>
+								<p>&copy; RiskCurb {new Date().getFullYear()} </p>
 							</div>
 						</div>
 						<div className="col-md-6">
