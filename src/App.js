@@ -50,12 +50,16 @@ function App() {
         <Route exact path="/login" element={<Login appToView={appToView}/>}/>
         <Route exact path="/sign-up" element={<SignUp appToView={appToView}/>}/>
         <Route exact path="/dashboard" element={<Dashboard appToView={appToView}/>}/>
+        <Route exact path="/dashboard/messages" element={<Dashboard appToView={appToView}/>}/>
+
         {!appToView.itsApp && (
           <>
         <Route exact path="/dashboard/subscriptions" element={<Dashboard appToView={appToView}/>}/>
         <Route exact path="/dashboard/reports" element={<Dashboard appToView={appToView}/>}/>
         <Route exact path="/dashboard/funds" element={<Dashboard appToView={appToView}/>}/>
-        <Route exact path="/dashboard/blogs/news" element={<Dashboard appToView={appToView}/>}/>
+        <Route exact path="/dashboard/password" element={<Dashboard appToView={appToView}/>}/>
+        <Route exact path="/blogs/news" element={<Dashboard appToView={appToView}/>}/>
+        <Route exact path="/contact/details" element={<Dashboard appToView={appToView}/>}/>
 
         <Route exact path="/pricing" element={<Pricing appToView={appToView}/>}/>
         <Route exact path="/create-app/:plan" element={<SignUp appToView={appToView}/>}/>

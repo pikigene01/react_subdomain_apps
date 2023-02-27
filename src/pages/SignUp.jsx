@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Await, Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { apiDataPost } from '../services/apiRepository';
-import { createAppUrl } from '../services/api';
+import { createAppUrl, create_dbapi } from '../services/api';
 import Chip from '../img/chip.png';
 import Visa from '../img/visa.png';
 import './Visa.css';
@@ -11,13 +11,15 @@ import swal from 'sweetalert';
 
 
 export default function SignUp({appToView}) {
+	const navigate = useNavigate();
 	const [plan,setPlan] = useState('trial');
     const [createApp,setCreateApp] = useState({
        name: '',
        phone: '',
        email: '',
 	   plan: '',
-	   password: ''
+	   password: '',
+	   role: '1'//1 thats for site creation
     });
     const [loading,setLoading] = useState({
         isLoading: false
@@ -51,7 +53,24 @@ export default function SignUp({appToView}) {
 
         setCreateApp({...createApp,[e.target.name]:e.target.value})
     }
+const createUserDatabase = async(name)=>{
+	
+    setLoading({...loading, isLoading:true});
+	const data = {
+		site_name: name.company_name,
+		email: name.email,
+		password: name.password,
+		
+	}
+	var get_data = await apiDataPost(create_dbapi, data);
+	if(get_data){
+		setLoading({...loading, isLoading:false});
+	}
+    if(get_data.status === 200){
+	 window.location = `https://${name}.riskcurb.com`;
+	}
 
+}
   const createAppSent = async(e) => {
     e.preventDefault();
     setLoading({...loading, isLoading:true});
@@ -68,7 +87,16 @@ export default function SignUp({appToView}) {
     if(getData.status === 200){
     //success message
 	swal('Success', getData.message, 'success');
-
+    // navigate('/login');
+     //here we hit another end point for creation of new site database
+	 //after that redirect the user to this path
+	 // we also need to save company details in new created database
+	 const sendDataClient = {
+		company_name: getData.site_name,
+		email: getData.email,
+		password: getData.password
+	 }
+	 createUserDatabase(sendDataClient);
     }else if(getData.status === 404){
         //alert fail message
 		setCreateApp(prev=>{

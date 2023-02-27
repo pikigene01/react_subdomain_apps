@@ -176,6 +176,8 @@ export default function Dash_Header({appToView}) {
          <li><Link to="/dashboard/password"><i className="fa fa-lock fa-fw"/>password</Link></li>        
          <li><Link to="/dashboard/users"><i className="fa fa-users fa-fw"/>users</Link></li>        
          <li><Link to="/blogs/news"><i className="fa fa-book fa-fw"/>blogs & news</Link></li>        
+         <li><Link to="/contact/details"><i className="fa fa-phone fa-fw"/>contact details</Link></li>        
+         <li><Link to="/dashboard/messages"><i className="fa fa-envelope fa-fw"/>messages</Link></li>        
                 
       </ul>
     </div>
