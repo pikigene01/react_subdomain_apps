@@ -27,7 +27,7 @@ axios.defaults.baseURL = apihost;
 // // axios.defaults.headers.post["content-type"] = "multipart/form-data: boundary=add-random-characters";
 // axios.defaults.headers.post["Accept"] = "application/json";
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = false;
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem("saasapp-token");
   config.headers.Authorization = token ? `Bearer ${token}` : "";

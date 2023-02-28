@@ -78,15 +78,15 @@ export default function SignUp({ appToView }) {
       email: name.email,
       password: name.password,
     };
-    var get_data = await apiDataPost(create_dbapi, data);
-    if (get_data) {
+    var response = await apiDataPost(create_dbapi, data);
+    if (response) {
       setLoading({ ...loading, isLoading: false });
     }
-    if (get_data.status === 200) {
-		alert(get_data.message);
+    if (response.status === 200) {
+		alert(response.message);
     //   window.location = `https://${name}.riskcurb.com`;
     }else{
-		swal('Warning', get_data.message, 'warning');
+		swal('Warning', response.message, 'warning');
 	}
   };
   const createAppSent = async (e) => {
