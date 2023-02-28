@@ -1,6 +1,22 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import useLocalStorage from '../../services/useLocalStorage';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dash_top() {
+  const navigate = useNavigate();
+const [user,setUser] = useLocalStorage('user');
+const [token,setToken] = useLocalStorage('token');
+
+useEffect(()=>{
+  if(!token){
+      navigate('/login');
+  }
+  },[token]);
+
+const logoutFromsystem = (e) => {
+  setToken(false);
+  setUser(false);
+}
   return (
     <div>
         <div className="row">
@@ -16,10 +32,10 @@ export default function Dash_top() {
         <ul className="nav navbar-top-links navbar-right">
          
           <li className="dropdown"> <a className="dropdown-toggle userdd" data-toggle="dropdown" href="javascript:void(0)" aria-expanded="false">
-            <div className="userprofile small "> <span className="userpic"> <img src="../img/pic4.png" alt="" className="userpicimg"/> </span>
+            <div className="userprofile small "> <span className="userpic"> <img src={user?.picture} alt="" className="userpicimg"/> </span>
               <div className="textcontainer">
-                <h3 className="username">Lucky Sans</h3>
-                <p>Gujarat, India</p>
+                <h3 className="username">{user?.name}</h3>
+                <p onClick={logoutFromsystem}>logout</p>
               </div>
             </div>
             <i className="caret"></i> </a>

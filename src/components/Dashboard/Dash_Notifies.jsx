@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Dash_Notifies() {
+export default function Dash_Notifies({sites_count,users_count,subscriptions}) {
   return (
     <div>
       <div className="row">
@@ -13,7 +13,7 @@ export default function Dash_Notifies() {
                   <i className="fa fa-tasks fa-2x"></i>{" "}
                 </div>
                 <div className="col-xs-9 text-right">
-                  <div className="huge">12</div>
+                  <div className="huge">{sites_count}</div>
                   <div>Sites</div>
                 </div>
               </div>
@@ -39,7 +39,7 @@ export default function Dash_Notifies() {
                   <i className="fa fa-shopping-cart fa-2x"></i>{" "}
                 </div>
                 <div className="col-xs-9 text-right">
-                  <div className="huge">124</div>
+                  <div className="huge">{subscriptions.length}</div>
                   <div>New Orders!</div>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export default function Dash_Notifies() {
                 </div>
                 <div className="col-xs-9 text-right">
                   <div className="huge">0</div>
-                  <div>issues!</div>
+                  <div>Earnings!</div>
                 </div>
               </div>
             </div>

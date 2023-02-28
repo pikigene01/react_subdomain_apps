@@ -1,7 +1,19 @@
 import React,{useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import useLocalStorage from '../../services/useLocalStorage';
 
 export default function Dash_Header({appToView}) {
+
+
+    const navigate = useNavigate();
+    const [token,setToken] = useLocalStorage('token');
+    const [user,setUser] = useLocalStorage('user');
+  
+    useEffect(()=>{
+        if(!token){
+          navigate('/login');
+        }
+    },[token])
 
     useEffect(() => {
             /* url  navigation active */
@@ -162,21 +174,25 @@ export default function Dash_Header({appToView}) {
       
      
       <div className="userprofile text-center">
-        <div className="userpic"> <img src="../img/pic4.png" alt="" className="userpicimg"/> <a href="#" className="btn btn-primary settingbtn"><i className="fa fa-gear"></i></a> </div>
+        <div className="userpic"> <img src={user?.picture} alt="" className="userpicimg"/> <a href="#" className="btn btn-primary settingbtn"><i className="fa fa-gear"></i></a> </div>
         <h3 className="username">{appToView?.appName}</h3>
-        <p>{appToView?.appName}</p>
+        <p>{user?.name}</p>
       </div>
       <div className="clearfix"></div>
       
       
       <ul className="nav" id="side-menu">
         <li> <Link to="/dashboard"><i className="fa fa-dashboard fa-fw"></i> Dashboard</Link> </li>
+        {user?.role == 'admin' &&(
+            <>
         <li><Link to="/dashboard/subscriptions"><i className="fa fa-money fa-fw"/> subscriptions</Link></li>
-         <li><Link to="/dashboard/funds"><i className="fa fa-tv fa-fw"/> sites</Link></li>        
+         <li><Link to="/dashboard/sites"><i className="fa fa-tv fa-fw"/> sites</Link></li> 
+         </>
+        )}       
          <li><Link to="/dashboard/password"><i className="fa fa-lock fa-fw"/>password</Link></li>        
          <li><Link to="/dashboard/users"><i className="fa fa-users fa-fw"/>users</Link></li>        
          <li><Link to="/blogs/news"><i className="fa fa-book fa-fw"/>blogs & news</Link></li>        
-         <li><Link to="/contact/details"><i className="fa fa-phone fa-fw"/>contact details</Link></li>        
+         {/* <li><Link to="/contact/details"><i className="fa fa-phone fa-fw"/>contact details</Link></li>         */}
          <li><Link to="/dashboard/messages"><i className="fa fa-envelope fa-fw"/>messages</Link></li>        
                 
       </ul>

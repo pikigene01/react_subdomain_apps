@@ -1,15 +1,15 @@
-import React from "react";
-import Dash_top from "./Dash_top";
-import Dash_Header from "./Dash_Header";
+import React from 'react'
+import Dash_Header from './Dash_Header'
+import Dash_top from './Dash_top'
 
-export default function Dash_sites({appToView,sites}) {
+export default function Dash_msgs({appToView,messages}) {
   return (
     <div>
-       <Dash_Header appToView={appToView}/>
+        <Dash_Header appToView={appToView}/>
       <div id="page-wrapper" style={{ minHeight: "612px;" }}>
-        <Dash_top />
+  <Dash_top/>
 
-        <div className="row">
+  <div className="row">
         <div className="col-sm-12">
           <table
             className="table  dataTable no-footer dtr-inline collapsed"
@@ -29,7 +29,7 @@ export default function Dash_sites({appToView,sites}) {
                   aria-label="User : activate to sort column ascending"
                   style={{"width": "54px;"}}
                 >
-                  site url{" "}
+                  from{" "}
                 </th>
                
                 <th
@@ -41,7 +41,7 @@ export default function Dash_sites({appToView,sites}) {
                   aria-label="Project: activate to sort column ascending"
                   style={{"width": "63px;"}}
                 >
-                  EMAIL
+                  subject
                 </th>
                 <th
                   className="sorting"
@@ -52,7 +52,18 @@ export default function Dash_sites({appToView,sites}) {
                   aria-label="Project: activate to sort column ascending"
                   style={{"width": "63px;"}}
                 >
-                  PHONE
+                  email
+                </th>
+                <th
+                  className="sorting"
+                  tabindex="0"
+                  aria-controls="dataTables-userlist"
+                  rowspan="1"
+                  colspan="1"
+                  aria-label="Project: activate to sort column ascending"
+                  style={{"width": "63px;"}}
+                >
+                  phone
                 </th>
                 <th
                   className="sorting"
@@ -63,28 +74,23 @@ export default function Dash_sites({appToView,sites}) {
                   aria-label="status: activate to sort column ascending"
                   style={{"width": "82px;"}}
                 >
-                  status
+                  message
                 </th>
               </tr>
             </thead>
             <tbody>
-              {sites?.map((data,index)=>{
+              {messages?.map((data,index)=>{
                 return (
                   <tr className="odd" key={index} role="row">
                   <td className="">
-                  <a target="_blank" href={"https://"+data.name+".riskcurb.com"}>Site Url</a>
-                  
+                   
+                   {data.company_name}
                   </td>
           
-                  <td className="center">{data.email}</td>
-                  <td className="center">{data.phone}</td>
+                  <td className="center">{data.price}</td>
+                  <td className="center">{data.plan}</td>
                   <td className="center">
-                
-                    {data.isVerified == '1' ?(
-                    <span className="status active">Activated</span>
-                    ):(
-                      <span className="status active">Deactivate</span>
-                    )}
+                    <span className="status active">{data.status}</span>
                   </td>
                 </tr>
                 )
@@ -97,5 +103,5 @@ export default function Dash_sites({appToView,sites}) {
       </div>
       </div>
     </div>
-  );
+  )
 }

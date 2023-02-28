@@ -1,8 +1,12 @@
 import React,{useEffect,useState} from 'react'
 import { Link } from 'react-router-dom'
+import useLocalStorage from '../services/useLocalStorage';
 
 export default function Header() {
-    const [getElements,setGetElements] = useState({})
+    const [getElements,setGetElements] = useState({});
+    const [token,setToken] = useLocalStorage('token');
+    const [user,setUser] = useLocalStorage('user');
+
     const loadPage = () =>{
         setGetElements({scrollView: 'page'})
     }
@@ -21,20 +25,25 @@ export default function Header() {
         });
     },[]);
 
+	const logoutFromsystem = (e) => {
+		setToken(false);
+		setUser(false);
+	}
+
     var linksMenu = "";
-    const loggedIn = localStorage.getItem('auth_token');
+    const loggedIn = token;
     linksMenu = (
     <>
     {
         loggedIn ? (
          <>
             <li><Link to="/dashboard"><i className="fa fa-lock"></i>Dashboard</Link></li>
-            <li style={{cursor:'pointer'}}><i className="fa fa-unlock"></i>Logout</li>
+            <li style={{cursor:'pointer'}} onClick={logoutFromsystem}><i className="fa fa-unlock"></i>Logout</li>
          </>
         ):(
 <>
             <li><Link to="/login"><i className="fa fa-key"></i>Login</Link></li>
-			<li><Link to="/sign-up"><i className="fa fa-lock"></i>Sign up</Link></li>
+			<li><Link to="/register"><i className="fa fa-lock"></i>Sign up</Link></li>
 </>
         )
     }

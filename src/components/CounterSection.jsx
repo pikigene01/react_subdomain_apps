@@ -28,7 +28,7 @@ export default function CounterSection() {
     //  }
 
      if(getDataFetch.status === 200){
-        setDataGet({...getDataFetch,sites:getDataFetch.sites,team: getDataFetch.users,apps:'1'})
+        setDataGet({...getDataFetch,sites:getDataFetch?.sites_count,team: getDataFetch?.users_count,apps:'1'})
      }
     }
     return ()=>{

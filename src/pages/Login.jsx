@@ -1,20 +1,28 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { apiDataPost } from '../services/apiRepository'
 import { login_clientapi, loginapi } from '../services/api'
 import swal from 'sweetalert'
+import useLocalStorage from '../services/useLocalStorage'
 
 export default function Login({appToView}) {
+	const navigate = useNavigate();
+    const [token,setToken] = useLocalStorage('token');
+    const [user,setUser] = useLocalStorage('user');
 	const [loginData,setLoginData] = useState({
 		email: '',
 		password: ''
-	})
+	});
     const [loading,setLoading] = useState({
         isLoading: false
       });
-
+	  useEffect(()=>{
+		if(token){
+			navigate('/dashboard');
+		}
+		},[token]);
 	  const handleChange = e =>{
 
 		setLoginData({...loginData,[e.target.name]:e.target.value});
@@ -44,7 +52,8 @@ export default function Login({appToView}) {
 
    if(getData.status === 200){
 	swal('Success', getData.message, 'success');
-
+	setToken(getData.token);
+	setUser(getData.user);
    }else if(getData.status === 404){
 	//alert fail message
 	setLoginData(prev=>{

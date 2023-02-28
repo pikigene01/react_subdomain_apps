@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Dash_Users() {
+export default function Dash_Users({users}) {
   return (
     <div>
       <div className="row">
@@ -106,29 +106,23 @@ export default function Dash_Users() {
               </tr>
             </thead>
             <tbody>
-              <tr className="odd" role="row">
-                <td className="">
-                 
-                  Alone Guy
-                </td>
-                <td className="sorting_1">info@maxartkiller.in</td>
-                <td>+91 000 000 0000</td>
-                <td className="center">Yearly</td>
-                <td className="center">
-                  <span className="status active">Active</span>
-                </td>
-              </tr>
-              <tr className="even" role="row">
-                <td className="">
-                  Alone Guy
-                </td>
-                <td className="sorting_1">info@maxartkiller.in</td>
-                <td>+91 000 000 0000</td>
-                <td className="center">Monthly</td>
-                <td className="center">
-                  <span className="status inactive">Inactive</span>
-                </td>
-              </tr>
+              {users?.map((user,index)=>{
+                return (
+                  <tr className="odd" key={index} role="row">
+                  <td className="">
+                   
+                   {user.name}
+                  </td>
+                  <td className="sorting_1">{user.email}</td>
+                  <td>{user.phone}</td>
+                  <td className="center">Yearly</td>
+                  <td className="center">
+                    <span className="status active">Active</span>
+                  </td>
+                </tr>
+                )
+              })}
+            
              
             </tbody>
           </table>
